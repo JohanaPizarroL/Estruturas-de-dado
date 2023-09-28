@@ -19,8 +19,8 @@ LISTA *lista_criar(void){
 
 	LISTA *l = (LISTA*)malloc(sizeof(LISTA)); //alocando espaco na mem
 	if(l != NULL){
-		l -> inicio = inicial; //var definida no .h = 0
-		l -> fim = ;l>inicio; //tambem aponta para o inicio
+		l->inicio = inicial; //var definida no .h = 0
+		l->fim = l->inicio; //tambem aponta para o inicio
 		//ja que a lista está vazia, sem elementos
 	}
 
@@ -82,15 +82,19 @@ ITEM *lista_remover(LISTA *lista, int chave){
 
 void lista_apagar(LISTA **lista){
 	//apagar a lista completa?? sim acho, que sim
-
+    if (*lista != NULL) {
+        free(*lista);
+        *lista = NULL; //atribuindo valor null para aliberar mem completamente
+    }
 
 }
 
 
 ITEM *lista_busca(LISTA *lista, int chave){
 
-	int tam = TAM_MAX;
-
+  	if (lista == NULL || lista_vazia(lista)) {
+        return NULL; //lista vazia ou não inicializada
+    }
 
 	for (int i = lista_->inicio; i < lista->fim; i++) {
         if (l->lista[i]->chave == chave) {
@@ -98,7 +102,7 @@ ITEM *lista_busca(LISTA *lista, int chave){
             return lista->lista[i];
         }
     }
-
+    return NULL;
 }
 
 
@@ -106,9 +110,14 @@ ITEM *lista_busca(LISTA *lista, int chave){
 int lista_tamanho(LISTA *lista){
 //retorna o tamanho atual da lista
 	//acho valido apenas acessar o conteudo que está dentro da struct e imprimir
-	return ((lista != NULL) ? lista->fim : ERRO);
+    if (lista != NULL) {
+        return lista->fim - lista->inicio;
+    }
+    return 0;
+	//return ((lista != NULL) ? lista->fim : ERRO);
 
 }
+
 bool lista_vazia(LISTA *lista){
 
 	//compara com o numero de inicio
@@ -144,11 +153,17 @@ bool lista_cheia(LISTA *lista){
 }
 
 
-
-
 void lista_imprimir(LISTA *lista){
 	//imprimir a lista ordenada
+	if (lista == NULL || lista_vazia(lista)){
+        printf("Lista vazia\n");
+        return 0;
+    }
 
+    for (int i = lista->inicio; i < lista->fim; i++) {
+        printf("Chave: %d\n", lista->lista[i]->chave);
+        // Você pode adicionar outras informações do item aqui
+    }
 
 
 }
