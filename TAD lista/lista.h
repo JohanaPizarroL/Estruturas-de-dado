@@ -2,12 +2,14 @@
 #ifndef LISTA_H
 	#define LISTA_H
 
+	#include "item.h"
+
 	#define TAM_MAX 100 /*estimativa do tamanho máximo da lista*/
 	#define inicial 0
 	#define ERRO -32000
 	#define ORDENADA 1 // 0 = lista não ordenada, 1 = lista ordenada
 
-	#include "item.h"
+	
 
 	typedef struct lista_ LISTA;
 
