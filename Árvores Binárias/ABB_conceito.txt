@@ -1,0 +1,8 @@
+Árvores binárias
+
+- Conjunto finito de elementos, denominados nós ou vértices
+	
+Estrutura geral:
+- Raiz -> T (pai)
+- Sub-conjunto E (filhos esquerda)
+- Sub-conjunto D (filhos direita)
